@@ -5,3 +5,6 @@ cp "videos/$1.$2" "www/tmp-$3/$1.mp4"
 sed "s/movie/$1/" player.html > www/tmp-$3/player.html
 cd www/tmp-$3
 zip "$1.zip" *.mp4 player.html
+rm *.mp4
+rm player.html
+rm "../../videos/$1.$2"
