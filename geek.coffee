@@ -27,17 +27,12 @@ geek.post '/geek', upload.single('videofile'), (req, res, next) ->
       ext = ''
       file = req.file.originalname
     rnd = Math.random().toString().substring(2,7)
-    console.log file, ext,rnd
-    console.log "response.sh #{rnd} #{file}"
     rst = exec "./response.sh #{rnd} '#{file}'"
-    console.log rst.stdout
-    console.log rst.stderr
+    console.log if rst.stderr then rst.stderr else rst.stdout
     res.writeHead 303, 'Location': "tmp-#{rnd}/response.html"
     res.end()
-    console.log "process.sh #{file} #{ext}"
     rst = exec "./process.sh '#{file}' #{ext} #{rnd}", cwd:'/Users/gillesgerlinger/dev/geek'
-    console.log rst.stdout
-    console.log rst.stderr
+    console.log if rst.stderr then rst.stderr else rst.stdout
   else
     res.status(404).end("no file uploaded")
 
