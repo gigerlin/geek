@@ -18,8 +18,6 @@ upload = multer storage:storage
 geek.post '/geek', upload.single('videofile'), (req, res, next) ->
   if req.file
     console.log req.file
-    res.writeHead 303, 'Location': 'process.html'
-    res.end()
     if req.file.originalname.indexOf('.') > -1
       tmp = req.file.originalname.split '.'
       ext = tmp[tmp.length-1]
@@ -28,11 +26,16 @@ geek.post '/geek', upload.single('videofile'), (req, res, next) ->
     else 
       ext = ''
       file = req.file.originalname
-    console.log ext, file
-    console.log(exec('ls -la', {cwd: './'}))
-    console.log "process.sh '#{file}' #{ext}"
-    rst = exec "./process.sh '#{file}' #{ext}", cwd:'/Users/gillesgerlinger/dev/geek'
-    console.log rst.status
+    rnd = Math.random().toString().substring(2,7)
+    console.log file, ext,rnd
+    console.log "response.sh #{rnd} #{file}"
+    rst = exec "./response.sh #{rnd} '#{file}'"
+    console.log rst.stdout
+    console.log rst.stderr
+    res.writeHead 303, 'Location': "tmp-#{rnd}/response.html"
+    res.end()
+    console.log "process.sh #{file} #{ext}"
+    rst = exec "./process.sh '#{file}' #{ext} #{rnd}", cwd:'/Users/gillesgerlinger/dev/geek'
     console.log rst.stdout
     console.log rst.stderr
   else
