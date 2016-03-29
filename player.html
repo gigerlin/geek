@@ -1,6 +1,33 @@
-<div>
-  <video>
-    <source src="movie.mp4" type="video/mp4">
-    Your browser does not support the video tag.    
-  </video>
-</div>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!--title>Create a video screen demo (using PowerPoint)</title-->
+  <script src="player/jwplayer.js" ></script>
+  <script>jwplayer.key="JPIZutm495ABdjSwc977Bf76A3XThtnCMVFO+Q==";</script>
+  <!--<script src="https://jwpsrv.com/library/GicEvEUzEeO3rSIACqoGtw.js"></script>-->
+</head>
+<body>
+
+<div id="videoContainer">Loading ...</div>
+
+<script>
+    jwplayer("videoContainer").setup({
+        file: "data/clip.mp4",
+        image: "data/poster.png",
+//        width: 852,
+//        height: 480,
+        //width: "100%",
+        //aspectratio: "16:9",
+        abouttext: "About Nokia",
+        aboutlink: "http://www.nokia.com",
+        stagevideo: false,
+        autostart: true
+    });
+</script>
+
+<!--br><font face="Arial"><b>Note:</b> Any comment, <a href="data/transcript.pdf">attachment</a> or <a href="http://alcatel-lucent.com" target="ALU">link</a> can go here</font>-->
+
+</body>
+</html>
